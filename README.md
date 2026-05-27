@@ -2,35 +2,35 @@
 
 ## Overview
 
-This project implements a Multimodal Emotion Recognition System using:
+This project implements a **Multimodal Emotion Recognition System** using:
 
 * Speech-only emotion recognition
 * Text-only emotion recognition
 * Fusion-based multimodal emotion recognition
 
-The system combines speech embeddings and contextual text embeddings for improved emotional understanding.
+The system combines **speech embeddings** and **contextual text embeddings** to improve emotional understanding and classification performance.
 
 ---
 
-# Technologies Used
+# Key Features
 
-* Python
-* PyTorch
-* Transformers (DistilBERT)
-* LSTM
-* Transformer Encoder
-* Attention Pooling
-* Scikit-learn
-* Matplotlib
-* Seaborn
+* Speech emotion recognition using temporal modelling
+* Text emotion recognition using contextual NLP embeddings
+* Multimodal fusion of speech and text representations
+* Attention-based feature aggregation
+* t-SNE visualization of learned emotional representations
+* Confusion matrix and classification reports
+* GPU-supported execution in Google Colab
 
 ---
 
 # Dataset
 
-TESS (Toronto Emotional Speech Set)
+Dataset Used:
 
-Emotions:
+**TESS (Toronto Emotional Speech Set)**
+
+Emotion Classes:
 
 * angry
 * disgust
@@ -42,14 +42,43 @@ Emotions:
 
 ---
 
+# Unseen Speaker Split Strategy
+
+To obtain more reliable and generalized evaluation results, the project follows an **unseen speaker split strategy**.
+
+Training and testing samples were separated carefully so that the model evaluates on speaker-independent emotional representations rather than memorizing speaker-specific characteristics.
+
+This helps:
+
+* reduce overfitting
+* improve generalization
+* achieve realistic evaluation performance
+* validate robustness of multimodal learning
+
+---
+
+# Technologies Used
+
+* Python
+* PyTorch
+* Transformers (DistilBERT)
+* BiLSTM
+* Transformer Encoder
+* Attention Pooling
+* Scikit-learn
+* Matplotlib
+* Seaborn
+* Google Colab
+
+---
+
 # Project Structure
 
+```text
 EmotionRecogProject/
 │
-├── dataset/
-│   └── tess.zip
-│
 ├── models/
+│   │
 │   ├── speech_pipeline/
 │   │   ├── train.py
 │   │   └── test.py
@@ -63,42 +92,50 @@ EmotionRecogProject/
 │       └── test.py
 │
 ├── Results/
+│   │
 │   ├── accuracy_tables/
+│   │
 │   └── plots/
 │
 ├── README.md
+│
 └── requirements.txt
+```
 
 ---
 
-# Speech Pipeline
+# Speech-Only Pipeline
 
-Architecture:
+## Architecture
 
-* Speech embeddings
-* BiLSTM
-* Transformer Encoder
-* Attention Pooling
-* Fully Connected Classifier
+Speech embeddings → BiLSTM → Transformer Encoder → Attention Pooling → Fully Connected Classifier
 
-Outputs:
+## Outputs
 
 * Accuracy report
+* Classification report
 * Confusion matrix
 * t-SNE visualization
 
 ---
 
-# Text Pipeline
+# Text-Only Pipeline
 
-Architecture:
+## Architecture
 
-* Cleaned and tokenized text
-* DistilBERT contextual embeddings
-* CLS token representation
-* Classification head
+Cleaned text → Tokenization → DistilBERT contextual embeddings → CLS token representation → Classification head
 
-Outputs:
+## NLP Workflow
+
+The text pipeline follows a real NLP-based contextual learning approach:
+
+1. Text preprocessing
+2. Tokenization
+3. Token-level contextual embedding extraction
+4. Transformer-based contextual learning
+5. Emotion classification
+
+## Outputs
 
 * Accuracy report
 * Confusion matrix
@@ -108,18 +145,22 @@ Outputs:
 
 # Fusion Pipeline
 
-Fusion combines:
+## Fusion Strategy
+
+The fusion model combines:
 
 * Speech embeddings
 * Text embeddings
 
-Fusion classifier:
+using feature concatenation followed by a deep neural classifier.
 
-* Fully connected neural network
+## Architecture
 
-Outputs:
+Speech embeddings + Text embeddings → Fusion Network → Emotion Classification
 
-* Accuracy report
+## Outputs
+
+* Fusion accuracy report
 * Confusion matrix
 * t-SNE visualization
 
@@ -127,11 +168,11 @@ Outputs:
 
 # Evaluator Instructions
 
-GPU runtime is recommended in Google Colab.
+GPU runtime is recommended in Google Colab for faster execution.
 
 ---
 
-# Speech-Only Pipeline
+# Speech-Only Pipeline Execution
 
 ## Steps
 
@@ -141,7 +182,7 @@ GPU runtime is recommended in Google Colab.
    Runtime → Change Runtime Type → GPU
 
 3. Copy entire:
-   speech_pipeline/test.py
+   `speech_pipeline/test.py`
 
 4. Paste into Colab
 
@@ -151,17 +192,11 @@ The script automatically:
 
 * downloads pretrained model
 * downloads embeddings
-* generates results
-
-Outputs:
-
-* accuracy report
-* confusion matrix
-* t-SNE plot
+* generates plots and reports
 
 ---
 
-# Fusion Pipeline
+# Fusion Pipeline Execution
 
 ## Steps
 
@@ -170,7 +205,7 @@ Outputs:
 2. Enable GPU
 
 3. Copy entire:
-   fusion_pipeline/test.py
+   `fusion_pipeline/test.py`
 
 4. Paste into Colab
 
@@ -180,25 +215,23 @@ The script automatically:
 
 * downloads pretrained model
 * downloads embeddings
-* generates plots/results
-
-Outputs:
-
-* fusion accuracy report
-* confusion matrix
-* t-SNE visualization
+* generates evaluation results
 
 ---
 
-# Text-Only Pipeline
+# Text-Only Pipeline Execution
 
 ## IMPORTANT
 
 Before execution in Google Colab run:
 
+```python
 pip install --upgrade torch torchvision torchaudio
+```
 
+```python
 pip uninstall torchvision -y
+```
 
 ---
 
@@ -211,38 +244,44 @@ pip uninstall torchvision -y
 3. Run the two pip commands above
 
 4. Copy entire:
-   text_pipeline/train.py
+   `text_pipeline/train.py`
 
 5. Paste into Colab and run
 
 6. After training completes:
-   copy entire text_pipeline/test.py
 
-7. Paste into new Colab cell and run
+   Copy entire:
+   `text_pipeline/test.py`
 
-Outputs:
-
-* text accuracy report
-* confusion matrix
-* t-SNE plot
+7. Run test.py
 
 ---
 
 # Results
 
-All generated outputs are saved inside:
+All generated outputs are stored inside:
 
+```text
 Results/
+│
+├── accuracy_tables/
+│
+└── plots/
+```
 
-* accuracy_tables/
-* plots/
+Generated outputs include:
+
+* Accuracy reports
+* Classification reports
+* Confusion matrices
+* t-SNE visualizations
 
 ---
 
 # Author
 
-Bhuvana Teja Kotti
+**Bhuvana Teja Kotti**
 
-B.Tech CSE (Data Science)
+B.Tech – Computer Science and Engineering (Data Science)
 
 Hyderabad Institute of Technology and Management
