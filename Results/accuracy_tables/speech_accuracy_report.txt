@@ -1,0 +1,15 @@
+Test Accuracy: 0.7457142857142857
+
+              precision    recall  f1-score   support
+
+       angry       0.62      0.41      0.49       200
+     disgust       0.94      0.60      0.73       200
+        fear       1.00      0.89      0.94       200
+       happy       0.60      0.80      0.69       200
+     neutral       1.00      1.00      1.00       200
+         sad       0.51      0.99      0.68       200
+    surprise       1.00      0.53      0.69       200
+
+    accuracy                           0.75      1400
+   macro avg       0.81      0.75      0.74      1400
+weighted avg       0.81      0.75      0.74      1400
