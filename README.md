@@ -237,7 +237,7 @@ pip uninstall torchvision -y
 
 2. Enable GPU
 
-3. Run the two pip commands above
+3. Run the pip command above
 
 4. Copy entire:
    `text_pipeline/train.py`
