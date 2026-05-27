@@ -123,8 +123,7 @@ Speech embeddings → BiLSTM → Transformer Encoder → Attention Pooling → F
 
 ## Architecture
 
-Cleaned text → Tokenization → DistilBERT contextual embeddings → CLS token representation → Classification head
-
+Cleaned text → Tokenization → DistilBERT → Contextual embeddings → Classification Head
 ## NLP Workflow
 
 The text pipeline follows a real NLP-based contextual learning approach:
