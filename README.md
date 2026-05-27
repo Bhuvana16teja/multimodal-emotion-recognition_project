@@ -225,9 +225,6 @@ The script automatically:
 
 Before execution in Google Colab run:
 
-```python
-pip install --upgrade torch torchvision torchaudio
-```
 
 ```python
 pip uninstall torchvision -y
